@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💕</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url("img2.png");
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: #fdeaea;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        width: 360px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        z-index: 10;
+    }
+
+    h1 {
+        color: #d63384;
+    }
+
+    .buttons {
+        position: relative;
+        height: 160px;
+        margin-top: 20px;
+    }
+
+    button {
+        font-size: 1.4em;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    .yes-btn {
+        background-color: #4CAF50;
+        color: white;
+        left: 40px;
+        top: 60px;
+        animation: bounce 1.5s infinite;
+    }
+
+    .no-btn {
+        background-color: #f44336;
+        color: white;
+        left: 200px;
+        top: 60px;
+    }
+
+    @keyframes bounce {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+
+    #message {
+        margin-top: 15px;
+        font-size: 1.3em;
+        color: #d63384;
+        font-weight: bold;
+    }
+
+    .heart {
+        position: absolute;
+        font-size: 22px;
+        animation: floatHeart 4s linear forwards;
+    }
+
+    @keyframes floatHeart {
+        from { transform: translateY(0); opacity: 1; }
+        to { transform: translateY(-700px); opacity: 0; }
+    }
+
+    /* 🔥 BIG FLOATING PICTURES */
+    .photo {
+        position: absolute;
+        width: 200px;   /* BIG SIZE */
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        animation: floatPhoto 7s ease-in forwards;
+    }
+
+    @keyframes floatPhoto {
+        from {
+            transform: translateY(0) scale(0.9);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-900px) scale(1.05);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Will You Be My Valentine Burikats? 💘</h1>
+
+    <div class="buttons">
+        <button class="yes-btn" onclick="yesClicked()">Yes 💖</button>
+        <button class="no-btn" onmouseover="moveNo()">No 💔</button>
+    </div>
+
+    <div id="message"></div>
+</div>
+
+<script>
+    function moveNo() {
+        const noBtn = document.querySelector('.no-btn');
+        noBtn.style.left = Math.random() * 230 + "px";
+        noBtn.style.top = Math.random() * 110 + "px";
+    }
+
+    function yesClicked() {
+        document.getElementById("message").innerHTML =
+            "YAY!!! 💕 Happy Valentine’s Day 😍";
+
+        createHearts();
+        createBigPhotos();
+    }
+
+    function createHearts() {
+        for (let i = 0; i < 10; i++) {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "💗";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.bottom = "0px";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 4000);
+        }
+    }
+
+    function createBigPhotos() {
+        const images = [
+            "img1.png",
+            "ima2.png",
+            "img3.png"
+        ];
+
+        for (let i = 0; i < 5; i++) {
+            let img = document.createElement("img");
+            img.src = images[Math.floor(Math.random() * images.length)];
+            img.className = "photo";
+            img.style.left = Math.random() * (window.innerWidth - 220) + "px";
+            img.style.bottom = "-220px";
+
+            document.body.appendChild(img);
+
+            setTimeout(() => img.remove(), 7000);
+        }
+    }
+</script>
+
+</body>
+</html>
